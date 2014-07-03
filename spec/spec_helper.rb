@@ -14,7 +14,6 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   # Allow using e.g. `create` instead of `FactoryGirl.create`
-  include FactoryGirl::Syntax::Methods
   # Disable this since database_cleaner does the same thing plus more
   config.use_transactional_fixtures = false
 
