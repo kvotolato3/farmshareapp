@@ -26,9 +26,13 @@ ActiveRecord::Schema.define(version: 20140702210150) do
   end
 
   create_table "orders", force: true do |t|
-    t.text    "payment_plan"
-    t.decimal "total_amt",          precision: 6, scale: 2
-    t.integer "pickup_location_id"
+    t.text     "payment_plan"
+    t.decimal  "total_amt",          precision: 6, scale: 2
+    t.integer  "pickup_location_id"
+    t.datetime "submitted_at"
+    t.datetime "paid_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pickup_locations", force: true do |t|
