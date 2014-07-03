@@ -29,6 +29,14 @@ gem 'spring',        group: :development
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-nav'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+  gem 'launchy'
 end
 
 gem 'devise'
