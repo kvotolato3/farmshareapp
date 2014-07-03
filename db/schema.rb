@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702210150) do
+ActiveRecord::Schema.define(version: 20140703182504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20140702210150) do
     t.date    "start_date"
     t.date    "end_date"
     t.integer "num_of_distributions"
+    t.boolean "is_season",                                    default: false
   end
 
 end
