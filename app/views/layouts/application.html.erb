@@ -3,11 +3,13 @@
 <head>
   <title>Redfire Farm Sign Up</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
 </head>
 <body>
+
 <% flash.each do |key, message| %>
 <%= content_tag :div, message, class: key %>
 <% end %>
