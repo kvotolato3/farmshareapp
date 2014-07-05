@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root 'orders#signup'
+  root 'orders#new'
+  resources :orders
 end

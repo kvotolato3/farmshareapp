@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-def signup
+def new
   @SeasonalShareOptions = ShareOption.where(is_season: true)
   @ExtraShareOptions = ShareOption.where(is_season: false)
 end
