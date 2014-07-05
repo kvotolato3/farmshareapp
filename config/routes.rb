@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root 'signup#index'
+  root 'orders#signup'
 end
