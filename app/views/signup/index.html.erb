@@ -3,9 +3,11 @@
 
 <h3>Choose your vegetable season</h3>
 
+<%= form_tag('order_path', method: "patch") do %>
   <% @SeasonalShareOptions.each do |seasonal_option| %>
     <p><%= seasonal_option.name%> (<%=seasonal_option.num_of_distributions%> weeks <%=seasonal_option.start_date%> through <%=seasonal_option.end_date%> )</p>
   <% end %>
+
 
 
 <h3>Select Additional Share Options you would like for the Season</h3>
@@ -14,5 +16,8 @@
 <p><%= extra_option.name%> (<%=extra_option.num_of_distributions%> weeks <%=extra_option.start_date%> through <%=extra_option.end_date%> )</p>
 <% end %>
 
+<%= submit_tag("Proceed to Review")%>
+
+<% end %>
 
 
