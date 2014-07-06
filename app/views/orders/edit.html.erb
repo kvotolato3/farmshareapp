@@ -32,6 +32,9 @@
                   (<%=extra_option.num_of_distributions%> weeks <%=extra_option.start_date%> through <%=extra_option.end_date%> )
                 </li>
                 <li><%=extra_option.description%></li>
+                <li><%=number_to_currency(extra_option.price)%> each</li>
+                <li><%= label_tag(:quantity, "How many shares would you like? ") %>
+                  <input max="10.0" min="1.0" name="quantity" step="1.0" type="number" /></li>
               </ul>
             </td>
           </tr>
