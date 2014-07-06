@@ -18,18 +18,26 @@
     </div>
     <div class="well">
       <h3>Select Additional Share Options you would like for the Season</h3>
-      <ul class="extra-options">
+      <table class="extra-options">
         <% @ExtraShareOptions.each do |extra_option| %>
-        <li><%= image_tag extra_option.image_url %>
-          <input type="checkbox" name="extra_share" value=<%=extra_option.id%>>
-          <label for=<%=extra_option.id%>><%=extra_option.name%></label>
-          (<%=extra_option.num_of_distributions%> weeks <%=extra_option.start_date%> through <%=extra_option.end_date%> )</li>
+        <tr>
+        <td><%= image_tag extra_option.image_url %></td>
+        <td>
+          <ul class="extra-options">
+            <li>
+              <input type="checkbox" name="extra_share" value=<%=extra_option.id%>>
+              <label for=<%=extra_option.id%>><%=extra_option.name%></label>
+              (<%=extra_option.num_of_distributions%> weeks <%=extra_option.start_date%> through <%=extra_option.end_date%> )
+            </li>
+            <li><%=extra_option.description%></li>
+          </ul>
+        </td>
+        </tr>
           <% end %>
-        </ul>
+        </table>
       </div>
-      <input type="submit" value="Continue" class="btn-sm btn-success">
       <% end %>
-      <input type="submit" value="Continue" class="btn-sm btn-success" id="submit-button">
+      <input type="submit" value="Save" class="btn-sm btn-success" id="submit-button">
     </div>
 
 
