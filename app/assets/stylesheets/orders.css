@@ -6,3 +6,8 @@
 .seasonal-options li {
  list-style: none;
 }
+
+td img {
+  border:1px solid #021a40;
+  }
+
