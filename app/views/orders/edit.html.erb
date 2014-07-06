@@ -12,8 +12,12 @@
       <li>
         <input type="radio" name="seasonal_share" value=<%=seasonal_option.id%>>
         <label for=<%=seasonal_option.id%>><%=seasonal_option.name%></label>
-        (<%=seasonal_option.num_of_distributions%>   weeks <%=seasonal_option.start_date%> through <%=seasonal_option.end_date%> )</li>
-        <% end %>
+        (<%=seasonal_option.num_of_distributions%> weeks <%=seasonal_option.start_date%> through <%=seasonal_option.end_date%> )
+      </li>
+      <li><%= label_tag(:quantity, "How many shares would you like? ") %>
+        <input max="10.0" min="1.0" name="quantity" step="1.0" type="number" />
+      </li>
+      <% end %>
       </ul>
     </div>
     <div class="well">
