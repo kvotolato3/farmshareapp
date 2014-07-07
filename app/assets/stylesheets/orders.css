@@ -7,6 +7,10 @@
  list-style: none;
 }
 
+.pickup-locations li {
+ list-style: none;
+}
+
 td img {
   border:1px solid #021a40;
   }
