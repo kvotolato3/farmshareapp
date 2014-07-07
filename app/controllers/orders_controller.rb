@@ -7,6 +7,7 @@ end
 def edit
   @SeasonalShareOptions = ShareOption.where(is_season: true)
   @ExtraShareOptions = ShareOption.where(is_season: false)
+  @PickupLocations = PickupLocation.all
 end
 
 def update
