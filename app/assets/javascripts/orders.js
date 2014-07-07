@@ -16,7 +16,6 @@ CSASignup.saveOrder = function(event) {
     var pair = [];
     var id = $(this).val();
     var quantity = $('#' + id +' :input[name=quantity]').val();
-    debugger;
     pair.push(id);
     pair.push(quantity);
     extraOptionsArray.push(pair);
