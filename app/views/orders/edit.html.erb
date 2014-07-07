@@ -2,36 +2,37 @@
 <div class="container">
   <p>Enjoy a delicious season of high quality organic produce. Tasty summer and fall vegetables like sweet carrots, vibrant greens, summer squashes, tomatoes, onions and more. Share pickups happen <strong>every week</strong> during the summer and <strong>every other week</strong> in the fall. Includes PYO at the farm, newsletters, seasonal events, and access to bulk order produce for preserving!</p>
 
-
   <%=form_tag(order_path, method: "put") do %>
+  <%= hidden_field_tag :order_id, @order.id %>
+
   <div class="well">
     <h3>Choose your vegetable season</h3>
   </div>
-    <ul class="seasonal-options">
+    <div class="seasonal-options">
       <% @SeasonalShareOptions.each do |seasonal_option| %>
-
-      <li>
-        <input type="radio" name="seasonal_share" value=<%=seasonal_option.id%>>
-        <label for=<%=seasonal_option.id%>><%=seasonal_option.name%></label>
-        (<%=seasonal_option.num_of_distributions%> weeks <%=seasonal_option.start_date%> through <%=seasonal_option.end_date%> )
-      </li>
-      <li>Sliding scale: <%=number_to_currency(seasonal_option.min_price)%> to <%=number_to_currency(seasonal_option.max_price)%> Please pay at least <%=number_to_currency(seasonal_option.price)%> unless you are low income. Payments over <%=number_to_currency(seasonal_option.price)%> subsidizes shares for low income members and help the farm.</li>
-      <li><%= label_tag(:price, "What amount will you pay? ") %>
-        <input max=<%=seasonal_option.max_price%> min=<%=seasonal_option.min_price%> name="quantity" step="1.0" type="number" />
-      </li>
-      <li><%= label_tag(:price, "How many shares would you like? ") %>
-        <input max="10.0" min="1.0" name="quantity" step="1.0" type="number" />
-      </li>
-      <% end %>
+      <ul id=<%=seasonal_option.id%>>
+        <li>
+          <input type="radio" name="seasonal_share" value=<%=seasonal_option.id%>>
+          <label for=<%=seasonal_option.id%>><%=seasonal_option.name%></label>
+          (<%=seasonal_option.num_of_distributions%> weeks <%=seasonal_option.start_date%> through <%=seasonal_option.end_date%> )
+        </li>
+        <li>Sliding scale: <%=number_to_currency(seasonal_option.min_price)%> to <%=number_to_currency(seasonal_option.max_price)%> Please pay at least <%=number_to_currency(seasonal_option.price)%> unless you are low income. Payments over <%=number_to_currency(seasonal_option.price)%> subsidizes shares for low income members and help the farm.</li>
+        <li class="seasonal_price"><%= label_tag(:seasonal_price, "What amount will you pay? ") %>
+          <input max=<%=seasonal_option.max_price%> min=<%=seasonal_option.min_price%> name="seasonal_price" step="1.0" type="number" />
+        </li>
+        <li><%= label_tag(:seasonal_quantity, "How many shares would you like? ") %>
+          <input max="10.0" min="1.0" name="seasonal_quantity" step="1.0" type="number" />
+        </li>
       </ul>
-
+      <% end %>
+    </div>
     <div class="well">
     <h3>Select Additional Share Options you would like for the Season</h3>
     </div>
       <table class="table table-hover extra-options-table">
+        <tbody>
         <% @ExtraShareOptions.each do |extra_option| %>
-         <tbody>
-          <tr>
+          <tr id=<%=extra_option.id%>>
             <td class="image"><%= image_tag extra_option.image_url, class: "img-responsive"%></td>
             <td>
               <ul class="extra-options">
@@ -47,8 +48,8 @@
               </ul>
             </td>
           </tr>
-          </tbody>
         <% end %>
+       </tbody>
       </table>
 
   <% end %>
