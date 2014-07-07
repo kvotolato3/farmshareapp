@@ -8,7 +8,8 @@ class OrderLinesController < ApplicationController
     OrderLine.create(order_id: order_id, share_option_id: seasonal_id, price: seasonal_price)
 
     extra_ids.each do |extra_id|
-      OrderLine.create(order_id: order_id, share_option_id: extra_id)
+      price = ShareOption.find(extra_id).price
+      OrderLine.create(order_id: order_id, share_option_id: extra_id, price: price)
     end
 
   end
