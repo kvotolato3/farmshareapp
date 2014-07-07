@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 var CSASignup = CSASignup || {};
 
-CSASignup.saveOrder = function(event) {
+CSASignup.saveOrder = function() {
   var seasonalOptionId = $('input:checked[name=seasonal_share]').val();
   var extraOptionsCollection = $('input:checked[name=extra_share]');
   var extraOptionsArray = [];
@@ -12,7 +12,7 @@ CSASignup.saveOrder = function(event) {
   var seasonalPrice = $('#' + seasonalOptionId +' :input[name=seasonal_price]').val();
   var seasonalQuantity = $('#' + seasonalOptionId +' :input[name=seasonal_quantity]').val();
 
-  extraOptionsCollection.each(function(i){
+  extraOptionsCollection.each(function(){
     var pair = [];
     var id = $(this).val();
     var quantity = $('#' + id +' :input[name=quantity]').val();
