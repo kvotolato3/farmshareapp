@@ -38,6 +38,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'launchy'
 end
+gem 'rails_12factor', group: :production
 
 gem 'devise'
 
