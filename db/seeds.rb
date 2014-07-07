@@ -199,8 +199,13 @@ PickupLocation.create(name: "Somerville at Whole Foods",
   end_time: 1830,
   season: "Summer")
 
+
 PickupLocation.create(name: "Lexington Vistaprint",
   description: "Employees Only",
+  address_1: "95 Hayden Avenue",
+  city: "Lexington",
+  state: "MA",
+  zip: "02421",
   day_of_week: "Wednesday",
   start_time: 1500,
   end_time: 1830,
