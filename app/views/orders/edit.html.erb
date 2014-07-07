@@ -59,10 +59,12 @@
   <div class="well">
     <h3>Choose your pickup location</h3>
   </div>
-  <ul class="pickup-locations">
+  <ul class="pickup-locations list-group">
   <% @PickupLocations.each do |location| %>
-    <li><input type="radio" name="pickup_location" value=<%=location.name%>>
+    <li class="list-group-item"><input type="radio" name="pickup_location" value=<%=location.name%>>
         <label for=<%=location.name%>><%=location.name%></label>
+        , <%=location.day_of_week%>s from <%=location.start_time%> to <%=location.end_time%>.
+         (<%=location.address_1%>, <%=location.city%>, <%=location.state%> <%=location.zip%>)
     </li>
   <% end %>
   </ul>
