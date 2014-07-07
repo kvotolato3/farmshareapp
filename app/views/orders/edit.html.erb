@@ -30,9 +30,9 @@
     <h3>Select Additional Share Options you would like for the Season</h3>
     </div>
       <table class="table table-hover extra-options-table">
+        <tbody>
         <% @ExtraShareOptions.each do |extra_option| %>
-         <tbody>
-          <tr>
+          <tr id=<%=extra_option.id%>>
             <td class="image"><%= image_tag extra_option.image_url, class: "img-responsive"%></td>
             <td>
               <ul class="extra-options">
@@ -48,8 +48,8 @@
               </ul>
             </td>
           </tr>
-          </tbody>
         <% end %>
+       </tbody>
       </table>
 
   <% end %>

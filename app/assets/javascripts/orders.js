@@ -11,7 +11,15 @@ CSASignup.saveOrder = function(event) {
   var orderId = $('input[name=order_id]').val();
   var seasonalPrice = $('#' + seasonalOptionId +' :input[name=seasonal_price]').val();
   var seasonalQuantity = $('#' + seasonalOptionId +' :input[name=seasonal_quantity]').val();
-  extraOptionsCollection.each(function(i){extraOptionsArray[i] = $(this).val();
+
+  extraOptionsCollection.each(function(i){
+    var pair = [];
+    var id = $(this).val();
+    var quantity = $('#' + id +' :input[name=quantity]').val();
+    debugger;
+    pair.push(id);
+    pair.push(quantity);
+    extraOptionsArray.push(pair);
   });
 
 
