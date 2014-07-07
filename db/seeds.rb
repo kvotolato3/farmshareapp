@@ -1,5 +1,7 @@
 ShareOption.delete_all
+PickupLocation.delete_all
 
+puts "Creating Share Options..."
 ShareOption.create(name: "Summer Vegetable Share",
   description: nil,
   image_url: nil,
@@ -52,7 +54,6 @@ ShareOption.create(name: "Egg Shares",
   end_date: "2014-12-15 [09:00:00]",
   num_of_distributions: 24)
 
-
 ShareOption.create(name: "Home Delivery",
   description: "An excellent deal for convenient and green delivery. Have the hard-core bikers at Metro
   Pedal Power deliver your share direct to you. Tricycle Delivery to Cambridge, Somerville, and parts of
@@ -63,7 +64,158 @@ ShareOption.create(name: "Home Delivery",
   end_date: "2014-12-15 [09:00:00]",
   num_of_distributions: 24)
 
+puts "Done."
 
+puts "Creating Pickup Locations..."
+PickupLocation.create(name: "Brighton at Whole Foods Parking Lot",
+  description: nil,
+  address_1: "15 Washington Street",
+  city: "Brighton",
+  state: "MA",
+  zip: "02135",
+  day_of_week: "Thursday",
+  start_time: 1530,
+  end_time: 1900,
+  season: "Summer")
 
+PickupLocation.create(name: "Boston South Station Farmers' Market",
+  description: nil,
+  address_1: "Dewey Square",
+  city: "Boston",
+  state: "MA",
+  zip: "02101",
+  day_of_week: "Tuesday",
+  start_time: 1200,
+  end_time: 1800,
+  season: "Summer")
 
+PickupLocation.create(name: "Cambridge Whole Foods parking lot",
+  description: nil,
+  address_1: "115 Prospect Street",
+  city: "Cambridge",
+  state: "MA",
+  zip: "02139",
+  day_of_week: "Wednesday",
+  start_time: 1630,
+  end_time: 1930,
+  season: "Summer")
+
+PickupLocation.create(name: "Cambridge Whole Foods parking lot",
+  description: nil,
+  address_1: "115 Prospect Street",
+  city: "Cambridge",
+  state: "MA",
+  zip: "02139",
+  day_of_week: "Friday",
+  start_time: 1430,
+  end_time: 1800,
+  season: "Summer")
+
+PickupLocation.create(name: "Clover Food Hub",
+  description: "Boxed Shares",
+  address_1: "1075 Cambridge Street",
+  city: "Cambridge",
+  state: "MA",
+  zip: "02139",
+  day_of_week: "Friday",
+  start_time: 1600,
+  end_time: 2030,
+  season: "Summer")
+
+PickupLocation.create(name: "Clover Harvard Square",
+  description: "Boxed Shares",
+  address_1: "7 Holyoke Street",
+  city: "Cambridge",
+  state: "MA",
+  zip: "02139",
+  day_of_week: "Friday",
+  start_time: 1600,
+  end_time: 2330,
+  season: "Summer")
+
+PickupLocation.create(name: "Clover Kendall Square",
+  description: "Boxed Shares",
+  address_1: "5 Cambridge Center",
+  city: "Cambridge",
+  state: "MA",
+  zip: "02139",
+  day_of_week: "Friday",
+  start_time: 1600,
+  end_time: 2230,
+  season: "Summer")
+
+PickupLocation.create(name: "Jamaica Plain First Baptist Church Parking Lot",
+  description: nil,
+  address_1: "633 Centre Street",
+  city: "Jamaica Plain",
+  state: "MA",
+  zip: "02130",
+  day_of_week: "Thursday",
+  start_time: 1600,
+  end_time: 1900,
+  season: "Summer")
+
+PickupLocation.create(name: "Newton at Temple Shalom",
+  description: nil,
+  address_1: "175 Temple Street",
+  city: "West Newton",
+  state: "MA",
+  zip: "02465",
+  day_of_week: "Thursday",
+  start_time: 1530,
+  end_time: 1900,
+  season: "Summer")
+
+PickupLocation.create(name: "Somerville at the Growing Center",
+  description: nil,
+  address_1: "22 Vinal Ave",
+  city: "Somerville",
+  state: "MA",
+  zip: "02143",
+  day_of_week: "Wednesday",
+  start_time: 1615,
+  end_time: 1915,
+  season: "Summer")
+
+PickupLocation.create(name: "Somerville at Metro Pedal Power",
+  description: nil,
+  address_1: "11 Olive Square",
+  city: "Somerville",
+  state: "MA",
+  zip: "02143",
+  day_of_week: "Thursday",
+  start_time: 1500,
+  end_time: 1830,
+  season: "Summer")
+
+PickupLocation.create(name: "Somerville at Whole Foods",
+  description: nil,
+  address_1: "45 Beacon Street",
+  city: "Somerville",
+  state: "MA",
+  zip: "02143",
+  day_of_week: "Wednesday",
+  start_time: 1500,
+  end_time: 1830,
+  season: "Summer")
+
+PickupLocation.create(name: "Lexington Vistaprint",
+  description: "Employees Only",
+  day_of_week: "Wednesday",
+  start_time: 1500,
+  end_time: 1830,
+  season: "Summer")
+
+PickupLocation.create(name: "Worcester at the First Unitarian Church",
+  description: nil,
+  address_1: "90 Main Street",
+  city: "Worcester",
+  state: "MA",
+  zip: "01608",
+  day_of_week: "Wednesday",
+  start_time: 1500,
+  end_time: 1900,
+  season: "Summer")
+
+puts "Done."
 
