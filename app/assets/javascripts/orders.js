@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 var CSASignup = CSASignup || {};
 
-CSASignup.saveOrder = function() {
+CSASignup.saveOrder = function(event) {
   var seasonalOptionId = $('input:checked[name=seasonal_share]').val();
   var extraOptionsCollection = $('input:checked[name=extra_share]');
   var extraOptionsArray = [];
