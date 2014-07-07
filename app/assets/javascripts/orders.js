@@ -10,6 +10,7 @@ CSASignup.saveOrder = function(event) {
   var extraOptionsArray = [];
   var orderId = $('input[name=order_id]').val();
   var seasonalPrice = $('#' + seasonalOptionId +' :input[name=seasonal_price]').val();
+  var seasonalQuantity = $('#' + seasonalOptionId +' :input[name=seasonal_quantity]').val();
   extraOptionsCollection.each(function(i){extraOptionsArray[i] = $(this).val();
   });
 
@@ -20,7 +21,8 @@ CSASignup.saveOrder = function(event) {
       data: {"seasonal_id": seasonalOptionId,
       "extra_ids": extraOptionsArray,
       "order_id": orderId,
-      "seasonal_price": seasonalPrice}
+      "seasonal_price": seasonalPrice,
+      "seasonal_quantity": seasonalQuantity}
     });
 };
 
