@@ -14,7 +14,6 @@ class OrderLinesController < ApplicationController
       quantity = index[1][1]
       OrderLine.create(order_id: order_id, share_option_id: id, price: price, quantity: quantity)
     end
-
   end
 end
 
