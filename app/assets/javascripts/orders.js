@@ -58,7 +58,11 @@ CSASignup.saveOrder = function() {
         "phone":phone,
         "email":email}},
       dataType: 'json'
-    });
-
+    }).done(CSASignup.reviewOrder);
 };
+
+CSASignup.reviewOrder = function(result) {
+  window.location.replace("/orders/" + result.id);
+};
+
 
