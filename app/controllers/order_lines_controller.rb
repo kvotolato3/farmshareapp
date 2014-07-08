@@ -6,7 +6,6 @@ class OrderLinesController < ApplicationController
     order_id = params["order_id"]
     seasonal_price = params["seasonal_price"]
     seasonal_quantity = params["seasonal_quantity"]
-    pickup_location = params["pickup_location"]
     Order.find(order_id).order_lines.destroy_all
     OrderLine.create(order_id: order_id, share_option_id: seasonal_id, price: seasonal_price, quantity: seasonal_quantity)
 
