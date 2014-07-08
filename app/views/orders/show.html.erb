@@ -17,7 +17,7 @@
 
   <div class="panel panel-warning">
     <div class="panel-heading">
-      <div class="panel-title">Share Options:</div>
+      <h2 class="panel-title">Share Options:</h2>
     </div>
     <table class="table" id="review-table">
       <thead>
@@ -43,12 +43,20 @@
       </div>
     </div>
   </div>
-    <div class="text-right">
-      Amount To Pay: <%=number_to_currency(@order.first_payment_amt)%>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h2 class="panel-title">Selected Payment Plan:</h2>
     </div>
+    <div class="panel-body">
+      <%=@order.payment_plan%>
+    </div>
+  </div>
+  <div class="text-right">
+    Amount To Pay: <%=number_to_currency(@order.first_payment_amt)%>
+  </div>
 </div>
 
-<%=link_to "Edit Order", edit_order_path(@order)%>
+
 
 
 
