@@ -19,7 +19,7 @@ td img {
   background-color: #fcf8e3 !important;
 }
 
-.table > tbody > tr {
+#review-table > tbody > tr {
   border-top: 2px solid #fcf8e3 !important;
 }
 

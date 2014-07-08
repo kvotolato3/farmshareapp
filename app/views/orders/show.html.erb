@@ -19,7 +19,7 @@
     <div class="panel-heading">
       <div class="panel-title">Share Options:</div>
     </div>
-    <table class="table">
+    <table class="table" id="review-table">
       <thead>
       <th>Description</th>
       <th>Quantity</th>
@@ -47,6 +47,8 @@
       Amount To Pay: <%=number_to_currency(@order.first_payment_amt)%>
     </div>
 </div>
+
+<%=link_to "Edit Order", edit_order_path(@order)%>
 
 
 
