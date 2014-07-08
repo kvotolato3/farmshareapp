@@ -12,6 +12,7 @@ CSASignup.saveOrder = function() {
   var seasonalPrice = $('#' + seasonalOptionId +' :input[name=seasonal_price]').val();
   var seasonalQuantity = $('#' + seasonalOptionId +' :input[name=seasonal_quantity]').val();
   var pickupId = $('input:checked[name=pickup_location]').val();
+  var paymentPlan = $('#payment_plan').val();
   var firstName = $('input[name=firstname]').val();
   var lastName = $('input[name=lastname]').val();
   var addressOne = $('input[name=address_1]').val();
@@ -46,6 +47,7 @@ CSASignup.saveOrder = function() {
     url: '/orders/' + orderId,
       type: 'PATCH',
       data: {"order" : {"pickup_location_id": pickupId,
+        "payment_plan":paymentPlan,
         "first_name":firstName,
         "last_name":lastName,
         "address_1":addressOne,
