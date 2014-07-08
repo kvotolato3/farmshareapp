@@ -12,6 +12,15 @@ CSASignup.saveOrder = function() {
   var seasonalPrice = $('#' + seasonalOptionId +' :input[name=seasonal_price]').val();
   var seasonalQuantity = $('#' + seasonalOptionId +' :input[name=seasonal_quantity]').val();
   var pickupId = $('input:checked[name=pickup_location]').val();
+  var firstName = $('input[name=firstname]').val();
+  var lastName = $('input[name=lastname]').val();
+  var addressOne = $('input[name=address_1]').val();
+  var addressTwo = $('input[name=address_2]').val();
+  var city = $('input[name=city]').val();
+  var state = $('input[name=state]').val();
+  var zip = $('input[name=zip]').val();
+  var phone = $('input[name=phone]').val();
+  var email = $('input[name=email]').val();
 
   extraOptionsCollection.each(function(){
     var pair = [];
