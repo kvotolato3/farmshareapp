@@ -8,13 +8,15 @@ class OrderLinesController < ApplicationController
     seasonal_quantity = params["seasonal_quantity"]
     Order.find(order_id).order_lines.destroy_all
     OrderLine.create(order_id: order_id, share_option_id: seasonal_id, price: seasonal_price, quantity: seasonal_quantity)
-
-    extra_ids.each do |index|
-      id = index[1][0]
-      price = ShareOption.find(id).price
-      quantity = index[1][1]
-      OrderLine.create(order_id: order_id, share_option_id: id, price: price, quantity: quantity)
+    if extra_ids != nil
+      extra_ids.each do |index|
+        id = index[1][0]
+        price = ShareOption.find(id).price
+        quantity = index[1][1]
+        OrderLine.create(order_id: order_id, share_option_id: id, price: price, quantity: quantity)
+      end
     end
+    render nothing: true
   end
 end
 
