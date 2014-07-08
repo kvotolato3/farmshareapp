@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   has_many :order_lines
 
   def full_name
-    self.first_name + self.last_name
+    self.first_name + " " + self.last_name
   end
 
   def city_st_zip
