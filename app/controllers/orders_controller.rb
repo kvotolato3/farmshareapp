@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 before_action :set_order, only: [:show, :edit, :update, :destroy]
 
 def show
+  @order_lines = OrderLine.where(order_id: @order.id)
 end
 
 def edit

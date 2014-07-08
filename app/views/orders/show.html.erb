@@ -1,1 +1,31 @@
-<h3>Confirm order</h3>
+<h3>Review order</h3>
+
+
+Shareholder Info:<br>
+<%=@order.full_name%><br>
+<%=@order.address_1%><br>
+<%=@order.city_st_zip%><br>
+<%=@order.phone%><br>
+<%=@order.email%><br>
+
+
+<table>
+  <tbody>
+  <%@order_lines.each do |order_line|%>
+    <tr>
+    <td><%=order_line.share_name%></td>
+    <td>x <%=order_line.quantity%></td>
+    <td><%=order_line.price%></td>
+    <td><%=order_line.ext_amt%></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+Subtotal: <%=@order.subtotal%>
+
+Amount To Pay: <%=@order.first_payment_amt%>
+
+
+
+
