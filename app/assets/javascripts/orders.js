@@ -45,7 +45,16 @@ CSASignup.saveOrder = function() {
   $.ajax({
     url: '/orders/' + orderId,
       type: 'PATCH',
-      data: {"order" : {"pickup_location_id": pickupId}},
+      data: {"order" : {"pickup_location_id": pickupId,
+        "first_name":firstName,
+        "last_name":lastName,
+        "address_1":addressOne,
+        "address_2":addressTwo,
+        "city":city,
+        "state":state,
+        "zip":zip,
+        "phone":phone,
+        "email":email}},
       dataType: 'json'
     });
 
