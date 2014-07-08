@@ -61,8 +61,8 @@
   </div>
   <ul class="pickup-locations list-group">
   <% @PickupLocations.each do |location| %>
-    <li class="list-group-item"><input type="radio" name="pickup_location" value=<%=location.name%>>
-        <label for=<%=location.name%>><%=location.name%></label>
+    <li class="list-group-item"><input type="radio" name="pickup_location" value=<%=location.id%>>
+        <label for=<%=location.id%>><%=location.name%></label>
           on <%=location.day_of_week%>s from <%=location.time_range%>
          (<%=location.address_1%>, <%=location.city%>, <%=location.state%> <%=location.zip%>)
     </li>
