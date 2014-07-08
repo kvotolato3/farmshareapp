@@ -39,6 +39,6 @@ private
   end
 
   def order_params
-    params.require(:order).permit(:payment_plan, :total_amt, :pickup_location_id)
+    params.require(:order).permit(:payment_plan, :total_amt, :pickup_location_id, :first_name, :last_name, :address_1, :address_2, :city, :state, :zip, :phone, :email)
   end
 end
