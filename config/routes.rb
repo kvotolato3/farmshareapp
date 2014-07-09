@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root 'orders#new'
-  resources :orders
+  resources :orders do
+    resources :charges
+  end
   resources :order_lines
+
 end

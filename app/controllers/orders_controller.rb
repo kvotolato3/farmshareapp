@@ -3,6 +3,8 @@ before_action :set_order, only: [:show, :edit, :update, :destroy]
 
 def show
   @order_lines = OrderLine.where(order_id: @order.id)
+  @first_pmt_amt = @order.first_payment_amt
+  @first_pmt_pennies = @order.in_pennies(@first_pmt_amt)
 end
 
 def edit

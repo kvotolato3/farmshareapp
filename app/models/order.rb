@@ -25,4 +25,8 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def in_pennies(dollars)
+    (dollars * 100).to_i
+  end
+
 end
