@@ -2,8 +2,12 @@
   <div class="text-center">
     <h2>Thanks, you paid <strong><%=number_to_currency(@first_pmt_amt)%></strong>!</h2>
   </div>
-
-<%= render partial: '/shared/order_details', locals: {order: @order, order_lines: @order_lines}%>
+  <div class="well">
+    <div class="text-center">
+     Your confirmation number is: <strong><%=@confirmation_num%></strong>
+    </div>
+  </div>
+  <%= render partial: '/shared/order_details', locals: {order: @order, order_lines: @order_lines}%>
 </div>
 
 
