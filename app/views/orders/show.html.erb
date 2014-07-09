@@ -1,56 +1,6 @@
 <div class = "container">
   <h3>Review order</h3>
-
-
-  <div class="panel panel-warning">
-    <div class="panel-heading">
-      <h2 class="panel-title">Shareholder Info:</h2>
-    </div>
-    <div class="panel-body">
-      <%=@order.full_name%><br>
-      <%=@order.address_1%><br>
-      <%=@order.city_st_zip%><br>
-      <%=@order.phone%><br>
-      <%=@order.email%><br>
-    </div>
-  </div>
-
-  <div class="panel panel-warning">
-    <div class="panel-heading">
-      <h2 class="panel-title">Share Options:</h2>
-    </div>
-    <table class="table" id="review-table">
-      <thead>
-      <th>Description</th>
-      <th>Quantity</th>
-      <th>Price per</th>
-      <th>Amount</th>
-      </thead>
-      <tbody>
-      <%@order_lines.each do |order_line|%>
-        <tr>
-        <td><%=order_line.share_name%></td>
-        <td>x <%=order_line.quantity%></td>
-        <td><%=number_to_currency(order_line.price)%></td>
-        <td><%=number_to_currency(order_line.ext_amt)%></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <div class="panel-footer panel-warning">
-      <div class="text-right">
-        Subtotal: <%=number_to_currency(@order.subtotal)%>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-warning">
-    <div class="panel-heading">
-      <h2 class="panel-title">Selected Payment Plan:</h2>
-    </div>
-    <div class="panel-body">
-      <%=@order.payment_plan%>
-    </div>
-  </div>
+  <%= render partial: '/shared/order_details', locals: {order: @order, order_lines: @order_lines}%>
   <div class="text-right">
     Amount To Pay: <%=number_to_currency(@first_pmt_amt)%>
   </div>
