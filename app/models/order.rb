@@ -29,4 +29,9 @@ class Order < ActiveRecord::Base
     (dollars * 100).to_i
   end
 
+  def submit(stripe_id)
+    self.submitted_at = Time.now
+    self.save
+  end
+
 end

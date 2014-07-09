@@ -19,7 +19,8 @@ class ChargesController < ApplicationController
       :description => 'Rails Stripe customer',
       :currency    => 'usd'
     )
-
+    @confirmation_num = charge.id
+    @order.submit(@confirmation_num)
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to charges_path
