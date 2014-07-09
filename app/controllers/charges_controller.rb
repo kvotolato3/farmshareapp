@@ -4,6 +4,7 @@ class ChargesController < ApplicationController
 
   def create
     @order = Order.find(params[:order_id])
+    @order_lines = OrderLine.where(order_id: @order)
     @first_pmt_amt = @order.first_payment_amt
     # Amount in cents
     @amount = @order.in_pennies(@first_pmt_amt)
