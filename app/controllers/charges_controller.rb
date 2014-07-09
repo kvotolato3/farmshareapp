@@ -22,6 +22,7 @@ class ChargesController < ApplicationController
     )
     @confirmation_num = charge.id
     @order.submit(@confirmation_num)
+    cookies.delete :redfire_order_id
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to charges_path
