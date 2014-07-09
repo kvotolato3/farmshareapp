@@ -58,7 +58,6 @@ feature 'User views extra options' do
       flower.name &&
       flower.price &&
       flower.num_of_distributions
-      save_and_open_page
   end
 end
 
