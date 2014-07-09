@@ -30,6 +30,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-nav'
   gem 'rspec-rails'
+  gem 'dotenv-rails'
 end
 
 group :test do
