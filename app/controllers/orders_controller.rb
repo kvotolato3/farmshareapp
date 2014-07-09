@@ -29,8 +29,13 @@ def destroy
 end
 
 def new
-  @order = Order.create
-  redirect_to edit_order_path(@order)
+  if cookies[:redfire_order_id]
+    order = Order.find(cookies[:redfire_order_id])
+  else
+    order = Order.create
+    cookies[:redfire_order_id] = order.id
+  end
+  redirect_to edit_order_path(order)
 end
 
 def create
