@@ -1,8 +1,34 @@
 $(document).ready(function(){
+  CSASignup.getShareOptions();
   $('#submit-button').click(CSASignup.saveOrder);
 });
 
 var CSASignup = CSASignup || {};
+
+CSASignup.getShareOptions = function() {
+  console.log("working");
+  $.ajax({
+    url:'/share_options.json',
+    type: 'GET'
+  }).done(CSASignup.displayShareOptions);
+
+};
+
+CSASignup.displayShareOptions = function(options) {
+  debugger;
+  var arrayLength = options.length;
+  for (var i = 0; i < arrayLength; i = i + 1) {
+    var option = options[i];
+    if (option.is_season === true) {
+  // Handlebars
+        var source = $('#seasonal_options_template').html();
+        var template = Handlebars.compile(source);
+        var seasonal_options_html = template(option);
+        $('#seasonal-options').append(seasonal_options_html);
+    }
+  }
+
+  };
 
 CSASignup.saveOrder = function() {
   var seasonalOptionId = $('input:checked[name=seasonal_share]').val();
