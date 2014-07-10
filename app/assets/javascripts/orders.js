@@ -15,7 +15,6 @@ CSASignup.getShareOptions = function() {
 };
 
 CSASignup.displayShareOptions = function(options) {
-  debugger;
   var arrayLength = options.length;
   for (var i = 0; i < arrayLength; i = i + 1) {
     var option = options[i];
@@ -50,11 +49,9 @@ CSASignup.saveOrder = function() {
   var email = $('input[name=email]').val();
 
   extraOptionsCollection.each(function(){
-    var pair = [];
     var id = $(this).val();
     var quantity = $('#' + id +' :input[name=quantity]').val();
-    pair.push(id);
-    pair.push(quantity);
+    var pair = new ExtraOption(id, quantity);
     extraOptionsArray.push(pair);
   });
 
