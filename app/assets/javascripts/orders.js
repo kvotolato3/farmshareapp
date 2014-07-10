@@ -32,31 +32,23 @@ CSASignup.saveOrder = function() {
     extraOptionsArray.push(pair);
   });
 
-
-  $.ajax({
-      url: '/order_lines/',
-      type: 'POST',
-      data: {"seasonal_id": seasonalOptionId,
-      "extra_ids": extraOptionsArray,
-      "order_id": orderId,
-      "seasonal_price": seasonalPrice,
-      "seasonal_quantity": seasonalQuantity}
-    });
-
-  $.ajax({
+$.ajax({
     url: '/orders/' + orderId,
       type: 'PATCH',
       data: {"order" : {"pickup_location_id": pickupId,
-        "payment_plan":paymentPlan,
-        "first_name":firstName,
-        "last_name":lastName,
-        "address_1":addressOne,
-        "address_2":addressTwo,
-        "city":city,
-        "state":state,
-        "zip":zip,
-        "phone":phone,
-        "email":email}},
+            "payment_plan":paymentPlan,
+            "first_name":firstName,
+            "last_name":lastName,
+            "address_1":addressOne,
+            "address_2":addressTwo,
+            "city":city,
+            "state":state,
+            "zip":zip,
+            "phone":phone,
+            "email":email},
+            "order_lines": {"seasonal_option": {"id":seasonalOptionId, "price":seasonalPrice, "quantity": seasonalQuantity},
+            "extra_options": extraOptionsArray}
+      },
       dataType: 'json'
     }).done(CSASignup.reviewOrder);
 };

@@ -14,6 +14,9 @@ def edit
 end
 
 def update
+  seasonal_option = params[:order_lines]["seasonal_option"]
+  extra_options = params[:order_lines]["extra_options"]
+  @order.update_lines(seasonal_option, extra_options)
   respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }

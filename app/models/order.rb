@@ -34,4 +34,29 @@ class Order < ActiveRecord::Base
     self.save
   end
 
+  def update_lines(seasonal_hash, extra_hash)
+    self.order_lines.destroy_all
+    order_id = self.id
+    OrderLine.create(order_id: order_id, share_option_id: seasonal_hash["id"], price: seasonal_hash["price"], quantity: seasonal_hash["quantity"])
+    if extra_hash != nil
+      extra_hash.each do |index|
+        id = index[1][0]
+        price = ShareOption.find(id).price
+        quantity = index[1][1]
+        OrderLine.create(order_id: order_id, share_option_id: id, price: price, quantity: quantity)
+      end
+    end
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
