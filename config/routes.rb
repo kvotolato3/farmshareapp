@@ -4,5 +4,5 @@ Rails.application.routes.draw do
     resources :charges
   end
   resources :order_lines
-
+  resources :share_options
 end
