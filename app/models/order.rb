@@ -18,7 +18,7 @@ class Order < ActiveRecord::Base
   end
 
   def first_payment_amt
-    if self.payment_plan == "Pay in full today"
+    if self.payment_plan == "full"
       return self.subtotal
     else
       return 100.00
