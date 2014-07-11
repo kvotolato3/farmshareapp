@@ -44,12 +44,15 @@ Setting up Stripe API keys on your local environment:
 - Open the .gitignore file and add `.env` to it
 
 - In the config/initializers directory, add a file named "stripe.rb" and add this code:
-  `Rails.configuration.stripe = {
-  :publishable_key => ENV['PUBLISHABLE_KEY'],
-  :secret_key      => ENV['SECRET_KEY']
+
+```
+  Rails.configuration.stripe = {
+    :publishable_key => ENV['PUBLISHABLE_KEY'],
+    :secret_key      => ENV['SECRET_KEY']
   }
 
-  Stripe.api_key = Rails.configuration.stripe[:secret_key]`
+  Stripe.api_key = Rails.configuration.stripe[:secret_key]
+```
 
 - Once these steps are completed, you will be able to use the "Pay With Credit Card" button
 on the Review order page.
