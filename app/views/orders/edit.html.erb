@@ -74,9 +74,9 @@
   </div>
   <p>Full payments and more consolidated payments before the harvest season begins are really a great help to us in many ways, and we encourage it if you can. Please contact us to set up a payment plan to fit what you may need.</p>
   <select name="payment_plan" id="payment_plan">
-    <option value="full">Pay in full today</option>
-    <option value="single">$100 today, share balance will be paid in 1 month.</option>
-    <option value="triple">$100 today, share balance will be paid over the next 3 months.</option>
+    <option value="full" <% if @order.payment_plan == 'full' %> selected <% end %>>Pay in full today</option>
+    <option value="single" <% if @order.payment_plan == 'single' %> selected <% end %>>$100 today, share balance will be paid in 1 month.</option>
+    <option value="triple" <% if @order.payment_plan == 'triple' %> selected <% end %>>$100 today, share balance will be paid over the next 3 months.</option>
   </select>
   <div class="well">
     <h3>Please fill out contact information</h3>
@@ -97,43 +97,43 @@
     <div class="form-group">
       <label for="address_1" class="col-sm-2 control-label">Address 1: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="address_1" id="address_1">
+        <input type="text" class="form-control" name="address_1" id="address_1" value="<%= @order.address_1%>">
       </div>
     </div>
     <div class="form-group">
       <label for="address_2" class="col-sm-2 control-label">Address 2: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="address_2" id="address_2">
+        <input type="text" class="form-control" name="address_2" id="address_2" value="<%= @order.address_2 %>">
       </div>
     </div>
     <div class="form-group">
       <label for="city" class="col-sm-2 control-label">City: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="city" id="city">
+        <input type="text" class="form-control" name="city" id="city" value="<%= @order.city %>">
       </div>
     </div>
     <div class="form-group">
       <label for="state" class="col-sm-2 control-label">State: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="state" id="state">
+        <input type="text" class="form-control" name="state" id="state" value="<%= @order.state %>">
       </div>
     </div>
     <div class="form-group">
       <label for="zip" class="col-sm-2 control-label">Zip: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="zip" id="zip">
+        <input type="text" class="form-control" name="zip" id="zip" value="<%= @order.zip %>">
       </div>
     </div>
     <div class="form-group">
       <label for="phone" class="col-sm-2 control-label">Phone: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="phone" id="phone">
+        <input type="text" class="form-control" name="phone" id="phone" value="<%= @order.phone %>">
       </div>
     </div>
     <div class="form-group">
       <label for="email" class="col-sm-2 control-label">Email: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="email" id="email">
+        <input type="text" class="form-control" name="email" id="email" value="<%= @order.email %>">
       </div>
     </div>
   </div>
