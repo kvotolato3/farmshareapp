@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  CSASignup.getShareOptions();
   $('#submit-button').click(CSASignup.saveOrder);
 });
 
