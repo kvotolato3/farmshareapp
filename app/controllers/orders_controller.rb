@@ -9,9 +9,9 @@ end
 
 def edit
   @order_lines = OrderLine.where(order_id: @order.id)
-  @SeasonalShareOptions = ShareOption.where(is_season: true)
-  @ExtraShareOptions = ShareOption.where(is_season: false)
-  @PickupLocations = PickupLocation.all
+  @seasonal_share_options = ShareOption.where(is_season: true)
+  @extra_share_options = ShareOption.where(is_season: false)
+  @pickup_locations = PickupLocation.all
 end
 
 def update
