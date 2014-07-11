@@ -44,6 +44,13 @@
       <h2 class="panel-title">Selected Payment Plan:</h2>
     </div>
     <div class="panel-body">
-      <%=order.payment_plan%>
+      <% case order.payment_plan %>
+      <% when 'full' %>
+        Pay in full today
+      <% when 'single' %>
+        $100 today, share balance will be paid in 1 month.
+      <% when 'triple' %>
+        $100 today, share balance will be paid over the next 3 months.
+      <% end %>
     </div>
   </div>
