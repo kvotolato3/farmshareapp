@@ -8,7 +8,6 @@ def show
 end
 
 def edit
-  @share_options = ShareOption.all
   @order_lines = OrderLine.where(order_id: @order.id)
   @SeasonalShareOptions = ShareOption.where(is_season: true)
   @ExtraShareOptions = ShareOption.where(is_season: false)
