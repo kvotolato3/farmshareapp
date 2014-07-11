@@ -5,14 +5,16 @@
     Amount To Pay: <%=number_to_currency(@first_pmt_amt)%>
   </div>
   <%=link_to "Edit Order", edit_order_path(@order), class: "btn btn-info"%>
-</div>
 
-<%= form_tag order_charges_path(@order) do %>
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Enter Credit Card Info"
-          data-amount=<%=@first_pmt_pennies%>></script>
-<% end %>
+  <div class="text-right">
+    <%= form_tag order_charges_path(@order) do %>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Enter Credit Card Info"
+              data-amount=<%=@first_pmt_pennies%>></script>
+    <% end %>
+  </div>
+</div>
 
 
 

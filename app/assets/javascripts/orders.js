@@ -1,7 +1,3 @@
-$(document).ready(function(){
-  $('#submit-button').click(CSASignup.saveOrder);
-});
-
 var CSASignup = CSASignup || {};
 
 CSASignup.getShareOptions = function() {
