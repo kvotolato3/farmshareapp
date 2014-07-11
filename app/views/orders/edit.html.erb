@@ -66,12 +66,14 @@
   <div class="well">
     <h3>Choose your payment plan</h3>
   </div>
-  <p>Full payments and more consolidated payments before the harvest season begins are really a great help to us in many ways, and we encourage it if you can. Please contact us to set up a payment plan to fit what you may need.</p>
-  <select name="payment_plan" id="payment_plan">
-    <option value="full" <% if @order.payment_plan == 'full' %> selected <% end %>>Pay in full today</option>
-    <option value="single" <% if @order.payment_plan == 'single' %> selected <% end %>>$100 today, share balance will be paid in 1 month.</option>
-    <option value="triple" <% if @order.payment_plan == 'triple' %> selected <% end %>>$100 today, share balance will be paid over the next 3 months.</option>
-  </select>
+  <div class="payment_plan">
+    <p>Full payments and more consolidated payments before the harvest season begins are really a great help to us in many ways, and we encourage it if you can. Please contact us to set up a payment plan to fit what you may need.</p>
+    <select name="payment_plan" id="payment_plan">
+      <option value="full" <% if @order.payment_plan == 'full' %> selected <% end %>>Pay in full today</option>
+      <option value="single" <% if @order.payment_plan == 'single' %> selected <% end %>>$100 today, share balance will be paid in 1 month.</option>
+      <option value="triple" <% if @order.payment_plan == 'triple' %> selected <% end %>>$100 today, share balance will be paid over the next 3 months.</option>
+    </select>
+  </div>
   <div class="well">
     <h3>Please fill out contact information</h3>
   </div>
