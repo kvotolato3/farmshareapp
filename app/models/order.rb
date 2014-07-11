@@ -39,7 +39,6 @@ class Order < ActiveRecord::Base
     order_id = self.id
     OrderLine.create(order_id: order_id, share_option_id: seasonal_hash["id"], price: seasonal_hash["price"], quantity: seasonal_hash["quantity"])
     if extra_hash != nil
-      binding.pry
       extra_hash.each do |index|
         id = index[1]["id"]
         price = ShareOption.find(id).price

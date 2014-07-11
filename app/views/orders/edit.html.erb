@@ -1,10 +1,12 @@
+<p><%= @order.inspect %></p>
+<p><%= @order_lines.inspect %></p>
   <script id="seasonal_options_template" type="text/x-handlebars-template">
     <ul id={{id}}>
-      <li><input type=radio name="seasonal_share" value={{id}}><label for={{id}}>{{name}}</label>
+      <li><input type=radio name="seasonal_share" value={{id}} {{line_checked}}><label for={{id}}>{{name}}</label>
       ({{num_of_distributions}} weeks {{start_date}} through {{end_date}})</li>
       <li>Sliding scale: {{min_price}} to {{max_price}} Please pay at least {{price}} unless you are low income. Payments over {{price}} subsidizes shares for low income members and help the farm.</li>
-      <li>What amount will you pay? <input type="number" min={{min_price}} max={{max_price}} name="seasonal_price" step="1.0"></li>
-      <li>How many shares would you like? <input type="number" max=10 name="seasonal_quantity" step="1.0"></li>
+      <li>What amount will you pay? <input type="number" min={{min_price}} max={{max_price}} name="seasonal_price" step="1.0" value={{line_amount}}></li>
+      <li>How many shares would you like? <input type="number" max=10 name="seasonal_quantity" step="1.0" value={{line_quantity}}></li>
     </ul>
   </script>
 
@@ -18,9 +20,11 @@
   <div class="well">
     <h3>Choose your vegetable season</h3>
   </div>
+
   <div id="seasonal-options">
 
   </div>
+
   <div id="extra-options">
 
   </div>
@@ -31,6 +35,7 @@
       <table class="table table-hover extra-options-table">
         <tbody>
         <% @ExtraShareOptions.each do |extra_option| %>
+          <%  %>
           <tr id=<%=extra_option.id%>>
             <td class="image"><%= image_tag extra_option.image_url, class: "img-responsive"%></td>
             <td>
@@ -57,7 +62,7 @@
   </div>
   <ul class="pickup-locations list-group">
   <% @PickupLocations.each do |location| %>
-    <li class="list-group-item"><input type="radio" name="pickup_location" value=<%=location.id%>>
+    <li class="list-group-item"><input type="radio" name="pickup_location" value=<%=location.id%> <% if location.id == @order.pickup_location_id %>checked<% end %>>
         <label for=<%=location.id%>><%=location.name%></label>
           on <%=location.day_of_week%>s from <%=location.time_range%>
          (<%=location.address_1%>, <%=location.city%>, <%=location.state%> <%=location.zip%>)
@@ -76,17 +81,17 @@
   <div class="well">
     <h3>Please fill out contact information</h3>
   </div>
-  <form class="form-horizontal">
+  <div class="form-horizontal">
     <div class="form-group">
       <label for="firstname" class="col-sm-2 control-label">First Name: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="firstname" id="firstname">
+        <input type="text" class="form-control" name="firstname" id="firstname" value="<%= @order.first_name %>">
       </div>
     </div>
     <div class="form-group">
       <label for="lastname" class="col-sm-2 control-label">Last Name: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="lastname" id="lastname">
+        <input type="text" class="form-control" name="lastname" id="lastname" value="<%= @order.last_name%>">
       </div>
     </div>
     <div class="form-group">
@@ -131,7 +136,7 @@
         <input type="text" class="form-control" name="email" id="email">
       </div>
     </div>
-  </form>
+  </div>
   <div class = "text-right">
   <input type="submit" value="Save" class="btn-sm btn-success" id="submit-button">
 

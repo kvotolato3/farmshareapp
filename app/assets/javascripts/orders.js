@@ -8,6 +8,9 @@ var CSASignup = CSASignup || {};
 CSASignup.getShareOptions = function() {
   console.log("working");
   $.ajax({
+    data: {
+      order_id: $('input[name=order_id]').val()
+    },
     url:'/share_options.json',
     type: 'GET'
   }).done(CSASignup.displayShareOptions);
