@@ -14,7 +14,7 @@
 <div class="container">
   <p>Enjoy a delicious season of high quality organic produce. Tasty summer and fall vegetables like sweet carrots, vibrant greens, summer squashes, tomatoes, onions and more. Share pickups happen <strong>every week</strong> during the summer and <strong>every other week</strong> in the fall. Includes PYO at the farm, newsletters, seasonal events, and access to bulk order produce for preserving!</p>
 
-  <%=form_tag(order_path, method: "put") do %>
+  <%=form_tag(order_path, method: "put", id: "options-form") do %>
   <%= hidden_field_tag :order_id, @order.id %>
 
   <div class="well">
@@ -41,8 +41,8 @@
                 </li>
                 <li><%=extra_option.description%></li>
                 <li><%=number_to_currency(extra_option.price)%> each</li>
-                <li><%= label_tag(:quantity, "How many shares would you like? ") %>
-                  <input max="10.0" min="1.0" name="quantity" step="1.0" type="number" value="<%= order_line.quantity if order_line %>" /></li>
+                <li><label for="quantity_<%=extra_option.id%>">How many shares would you like? </label>
+                  <input max="10.0" min="1.0" name="quantity" step="1.0" type="number" id="quantity_<%=extra_option.id%>" value="<%= order_line.quantity if order_line %>" /></li>
               </ul>
             </td>
           </tr>
@@ -129,13 +129,12 @@
     <div class="form-group">
       <label for="email" class="col-sm-2 control-label">Email: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="email" id="email" value="<%= @order.email %>">
+        <input type="email" class="form-control" name="email" id="email" value="<%= @order.email %>">
       </div>
     </div>
   </div>
   <div class = "text-right">
   <input type="submit" value="Save" class="btn-sm btn-success" id="submit-button">
-
   </div>
 
 </div>
@@ -144,6 +143,7 @@
 
 <script>
 CSASignup.getShareOptions();
+$('#options-form').validate();
 $('#submit-button').click(CSASignup.saveOrder);
 </script>
 
