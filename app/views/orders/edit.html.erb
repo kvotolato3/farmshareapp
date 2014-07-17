@@ -148,10 +148,16 @@ CSASignup.getShareOptions();
 var form = $('#options-form');
 form.validate({
   rules: {
-    pickup_location: "required"
+    pickup_location: "required",
+    zip: {
+      digits: true,
+      minlength: 5,
+      maxlength: 5
+    }
   },
   messages: {
-    pickup_location: "This section is required"
+    pickup_location: "This section is required",
+    zip: "Please enter a 5 digit zip code"
   }
 });
 $('#submit-button').click(CSASignup.saveOrder);
