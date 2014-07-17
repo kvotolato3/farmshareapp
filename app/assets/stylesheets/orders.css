@@ -39,8 +39,12 @@ td img {
   padding-bottom: 20px;
   }
 
-.error {
-  color: red;
+label.error{
+  background-color: #CE0A31;
+  color: #FFFFFF;
+  padding: 5px;
+  margin: 5px;
+  font-size: small;
 }
 
 
