@@ -54,9 +54,10 @@
     <h3>Choose your pickup location</h3>
   </div>
   <ul class="pickup-locations list-group">
+  <label for="pickup_location" id="pickup_location-errors" class="error" style="display:none"></label>
   <% @pickup_locations.each do |location| %>
-    <li class="list-group-item"><input type="radio" name="pickup_location" value=<%=location.id%> <% if location.id == @order.pickup_location_id %>checked<% end %>>
-        <label for=<%=location.id%>><%=location.name%></label>
+    <li class="list-group-item"><input type="radio" name="pickup_location" id="pickup_location" value=<%=location.id%> <% if location.id == @order.pickup_location_id %>checked<% end %>>
+        <label for="pickup_location"><%=location.name%></label>
           on <%=location.day_of_week%>s from <%=location.time_range%>
          (<%=location.address_1%>, <%=location.city%>, <%=location.state%> <%=location.zip%>)
     </li>
@@ -80,13 +81,13 @@
     <div class="form-group">
       <label for="firstname" class="col-sm-2 control-label">First Name: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="firstname" id="firstname" value="<%= @order.first_name %>">
+        <input type="text" class="form-control" name="firstname" id="firstname" value="<%= @order.first_name %>" required>
       </div>
     </div>
     <div class="form-group">
       <label for="lastname" class="col-sm-2 control-label">Last Name: </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="lastname" id="lastname" value="<%= @order.last_name%>">
+        <input type="text" class="form-control" name="lastname" id="lastname" value="<%= @order.last_name%>" required>
       </div>
     </div>
     <div class="form-group">
@@ -128,7 +129,7 @@
     <div class="form-group">
       <label for="email" class="col-sm-2 control-label">Email: </label>
       <div class="col-sm-6">
-        <input type="email" class="form-control" name="email" id="email" value="<%= @order.email %>">
+        <input type="email" class="form-control" name="email" id="email" value="<%= @order.email %>" required>
       </div>
     </div>
   </div>
@@ -145,7 +146,14 @@
 <script>
 CSASignup.getShareOptions();
 var form = $('#options-form');
-form.validate();
+form.validate({
+  rules: {
+    pickup_location: "required"
+  },
+  messages: {
+    pickup_location: "This section is required"
+  }
+});
 $('#submit-button').click(CSASignup.saveOrder);
 </script>
 
