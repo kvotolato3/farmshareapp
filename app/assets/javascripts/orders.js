@@ -1,7 +1,6 @@
 var CSASignup = CSASignup || {};
 
 CSASignup.getShareOptions = function() {
-  console.log("working");
   $.ajax({
     data: {
       order_id: $('input[name=order_id]').val()
@@ -28,12 +27,13 @@ CSASignup.displayShareOptions = function(options) {
   };
 
 CSASignup.saveOrder = function() {
+  alert("Valid: " + form.valid());
   var seasonalOptionId = $('input:checked[name=seasonal_share]').val();
   var extraOptionsCollection = $('input:checked[name=extra_share]');
   var extraOptionsArray = [];
   var orderId = $('input[name=order_id]').val();
-  var seasonalPrice = $('#' + seasonalOptionId +' :input[name=seasonal_price]').val();
-  var seasonalQuantity = $('#' + seasonalOptionId +' :input[name=seasonal_quantity]').val();
+  var seasonalPrice = $('input[name=seasonal_price_' +seasonalOptionId +']').val();
+  var seasonalQuantity = $('input[name=seasonal_quantity_' +seasonalOptionId +']').val();
   var pickupId = $('input:checked[name=pickup_location]').val();
   var paymentPlan = $('#payment_plan option:selected').val();
   var firstName = $('input[name=firstname]').val();
