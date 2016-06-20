@@ -1,186 +1,202 @@
+<script id="seasonal_options_template" type="text/x-handlebars-template">
+  <div id={{id}} class="input-group">
+    <span class="input-group-addon">
+      <input type=radio name="seasonal_share" value={{id}} {{line_checked}}>
+    </span>
+    <label for={{id}} class="form-control">{{name}} ({{num_of_distributions}} weeks {{start_date}} through {{end_date}})</label>
+  </div>
+</script>
 
-  <script id="seasonal_options_template" type="text/x-handlebars-template">
-    <ul id={{id}}>
-      <li>
-        <input type=radio name="seasonal_share" value={{id}} {{line_checked}}><label for={{id}}>{{name}}</label>
-      ({{num_of_distributions}} weeks {{start_date}} through {{end_date}})
-      </li>
-    </ul>
-  </script>
+<script id="seasonal_price_qty" type="text/x-handlebars-template">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Sliding scale: {{min_price}} to {{max_price}} Please pay at least {{price}} unless you are low income. Payments over {{price}} subsidizes shares for low income members and help the farm.
+    </div>
+    <div class="panel-body">
+      Amount
+      <input type="number" min={{min_price}} max={{max_price}} id="seasonal_price" name="seasonal_price" step="1.0" value={{price}}>
 
-  <script id="seasonal_price_qty" type="text/x-handlebars-template">
-  <p>
-  Sliding scale: {{min_price}} to {{max_price}} Please pay at least {{price}} unless you are low income. Payments over {{price}} subsidizes shares for low income members and help the farm.
-  </p>
-  <p>
-    Amount
-    <input type="number" min={{min_price}} max={{max_price}} id="seasonal_price" name="seasonal_price" step="1.0" value={{price}}>
-  </p>
-  <p>Quantity
-    <input type="number" min=0 max=10 id="seasonal_quantity" name="seasonal_quantity" step="1.0" value=1>
-  </p>
-  </script>
-
-
+      Quantity
+      <input type="number" min=0 max=10 id="seasonal_quantity" name="seasonal_quantity" step="1.0" value=1>
+    </div>
+  </div>
+</script>
 
 <div class="container">
-  <p>Enjoy a delicious season of high quality organic produce. Tasty summer and fall vegetables like sweet carrots, vibrant greens, summer squashes, tomatoes, onions and more. Share pickups happen <strong>every week</strong> during the summer and <strong>every other week</strong> in the fall. Includes PYO at the farm, newsletters, seasonal events, and access to bulk order produce for preserving!</p>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <p>Enjoy a delicious season of high quality organic produce. Tasty summer and fall vegetables like sweet carrots, vibrant greens, summer squashes, tomatoes, onions and more. Share pickups happen <strong>every week</strong> during the summer and <strong>every other week</strong> in the fall. Includes PYO at the farm, newsletters, seasonal events, and access to bulk order produce for preserving!</p>
+    </div>
+  </div>
 
   <%=form_tag(order_path, method: "put", id: "options-form") do %>
   <%= hidden_field_tag :order_id, @order.id %>
 
-  <div class="well">
-    <h3>Choose your vegetable season</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Choose your vegetable season</h3>
+    </div>
+    <div class="panel-body">
+      <div id="seasonal-options">
+      </div>
+
+      <div id="seasonal-price-qty">
+      </div>
+    </div>
   </div>
 
-  <div id="seasonal-options">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Select Additional Share Options you would like for the Season</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover extra-options-table">
+          <tbody>
+            <% @extra_share_options.each do |extra_option| %>
+              <% order_line = @order_lines.detect {|line| line.share_option_id == extra_option.id} %>
+              <tr id=<%=extra_option.id%>>
+                <td class="image"><%= image_tag extra_option.image_url, class: "img-responsive"%></td>
+                <td>
+                  <ul class="extra-options">
+                    <li>
+                      <input type="checkbox" name="extra_share" value=<%=extra_option.id%> <% if order_line %>checked <% end %>>
+                      <label for=<%=extra_option.id%>><%=extra_option.name%></label>
+                      (<%=extra_option.num_of_distributions%> weeks <%=extra_option.start_date%> through <%=extra_option.end_date%> )
+                    </li>
+                    <li><%=extra_option.description%></li>
+                    <li><%=number_to_currency(extra_option.price)%> each</li>
+                    <li><label for="quantity_<%=extra_option.id%>">How many shares would you like? </label>
+                      <input max="10.0" min="1.0" name="quantity" step="1.0" type="number" id="quantity_<%=extra_option.id%>" value="<%= order_line.quantity if order_line %>" /></li>
+                  </ul>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Choose your pickup location</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="pickup-locations list-group">
+        <label for="pickup_location" id="pickup_location-errors" class="error" style="display:none"></label>
+          <% @pickup_locations.each do |location| %>
+            <li class="list-group-item"><input type="radio" name="pickup_location" id="pickup_location" value=<%=location.id%> <% if location.id == @order.pickup_location_id %>checked<% end %>>
+            <label for="pickup_location"><%=location.name%></label>
+              on <%=location.day_of_week%>s from <%=location.time_range%>
+             (<%=location.address_1%>, <%=location.city%>, <%=location.state%> <%=location.zip%>)
+            </li>
+          <% end %>
+      </ul>
+    </div>
   </div>
-
-  <div id="seasonal-price-qty">
-  </div>
-
-    <div class="well">
-    <h3>Select Additional Share Options you would like for the Season</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Choose your payment plan</h3>
     </div>
-      <table class="table table-hover extra-options-table">
-        <tbody>
-        <% @extra_share_options.each do |extra_option| %>
-          <% order_line = @order_lines.detect {|line| line.share_option_id == extra_option.id} %>
-          <tr id=<%=extra_option.id%>>
-            <td class="image"><%= image_tag extra_option.image_url, class: "img-responsive"%></td>
-            <td>
-              <ul class="extra-options">
-                <li>
-                  <input type="checkbox" name="extra_share" value=<%=extra_option.id%> <% if order_line %>checked <% end %>>
-                  <label for=<%=extra_option.id%>><%=extra_option.name%></label>
-                  (<%=extra_option.num_of_distributions%> weeks <%=extra_option.start_date%> through <%=extra_option.end_date%> )
-                </li>
-                <li><%=extra_option.description%></li>
-                <li><%=number_to_currency(extra_option.price)%> each</li>
-                <li><label for="quantity_<%=extra_option.id%>">How many shares would you like? </label>
-                  <input max="10.0" min="1.0" name="quantity" step="1.0" type="number" id="quantity_<%=extra_option.id%>" value="<%= order_line.quantity if order_line %>" /></li>
-              </ul>
-            </td>
-          </tr>
-        <% end %>
-       </tbody>
-      </table>
-
-  <div class="well">
-    <h3>Choose your pickup location</h3>
-  </div>
-  <ul class="pickup-locations list-group">
-  <label for="pickup_location" id="pickup_location-errors" class="error" style="display:none"></label>
-  <% @pickup_locations.each do |location| %>
-    <li class="list-group-item"><input type="radio" name="pickup_location" id="pickup_location" value=<%=location.id%> <% if location.id == @order.pickup_location_id %>checked<% end %>>
-        <label for="pickup_location"><%=location.name%></label>
-          on <%=location.day_of_week%>s from <%=location.time_range%>
-         (<%=location.address_1%>, <%=location.city%>, <%=location.state%> <%=location.zip%>)
-    </li>
-  <% end %>
-  </ul>
-  <div class="well">
-    <h3>Choose your payment plan</h3>
-  </div>
-  <div class="payment_plan">
-    <p>Full payments and more consolidated payments before the harvest season begins are really a great help to us in many ways, and we encourage it if you can. Please contact us to set up a payment plan to fit what you may need.</p>
-    <select name="payment_plan" id="payment_plan">
-      <option value="full" <% if @order.payment_plan == 'full' %> selected <% end %>>Pay in full today</option>
-      <option value="single" <% if @order.payment_plan == 'single' %> selected <% end %>>$100 today, share balance will be paid in 1 month.</option>
-      <option value="triple" <% if @order.payment_plan == 'triple' %> selected <% end %>>$100 today, share balance will be paid over the next 3 months.</option>
-    </select>
-  </div>
-  <div class="well">
-    <h3>Please fill out contact information</h3>
-  </div>
-  <div class="form-horizontal">
-    <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">First Name: </label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" name="firstname" id="firstname" value="<%= @order.first_name %>" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="lastname" class="col-sm-2 control-label">Last Name: </label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" name="lastname" id="lastname" value="<%= @order.last_name%>" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="address_1" class="col-sm-2 control-label">Address 1: </label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" name="address_1" id="address_1" value="<%= @order.address_1%>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="address_2" class="col-sm-2 control-label">Address 2: </label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" name="address_2" id="address_2" value="<%= @order.address_2 %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="city" class="col-sm-2 control-label">City: </label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" name="city" id="city" value="<%= @order.city %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="state" class="col-sm-2 control-label">State: </label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" name="state" id="state" value="<%= @order.state %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="zip" class="col-sm-2 control-label">Zip: </label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" name="zip" id="zip" value="<%= @order.zip %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="phone" class="col-sm-2 control-label">Phone: </label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" name="phone" id="phone" value="<%= @order.phone %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="email" class="col-sm-2 control-label">Email: </label>
-      <div class="col-sm-6">
-        <input type="email" class="form-control" name="email" id="email" value="<%= @order.email %>" required>
+    <div class="panel-body">
+      <div class="payment_plan">
+        <p>Full payments and more consolidated payments before the harvest season begins are really a great help to us in many ways, and we encourage it if you can. Please contact us to set up a payment plan to fit what you may need.</p>
+        <select name="payment_plan" id="payment_plan">
+          <option value="full" <% if @order.payment_plan == 'full' %> selected <% end %>>Pay in full today</option>
+          <option value="single" <% if @order.payment_plan == 'single' %> selected <% end %>>$100 today, share balance will be paid in 1 month.</option>
+          <option value="triple" <% if @order.payment_plan == 'triple' %> selected <% end %>>$100 today, share balance will be paid over the next 3 months.</option>
+        </select>
       </div>
     </div>
   </div>
-  <% end %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Please fill out contact information</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="firstname" class="col-sm-2 control-label">First Name: </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="firstname" id="firstname" value="<%= @order.first_name %>" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lastname" class="col-sm-2 control-label">Last Name: </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="lastname" id="lastname" value="<%= @order.last_name%>" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address_1" class="col-sm-2 control-label">Address 1: </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="address_1" id="address_1" value="<%= @order.address_1%>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address_2" class="col-sm-2 control-label">Address 2: </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="address_2" id="address_2" value="<%= @order.address_2 %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="city" class="col-sm-2 control-label">City: </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="city" id="city" value="<%= @order.city %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="state" class="col-sm-2 control-label">State: </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="state" id="state" value="<%= @order.state %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="zip" class="col-sm-2 control-label">Zip: </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="zip" id="zip" value="<%= @order.zip %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone" class="col-sm-2 control-label">Phone: </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="phone" id="phone" value="<%= @order.phone %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">Email: </label>
+          <div class="col-sm-6">
+            <input type="email" class="form-control" name="email" id="email" value="<%= @order.email %>" required>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
   <div class = "text-right">
-  <input type="submit" value="Save" class="btn-sm btn-success" id="submit-button">
+    <input type="submit" value="Save" class="btn-sm btn-success" id="submit-button">
   </div>
-
-
 </div>
 
-
-
 <script>
-CSASignup.getShareOptions();
+  CSASignup.getShareOptions();
 
-var form = $('#options-form');
+  var form = $('#options-form');
 
-form.validate({
-  rules: {
-    seasonal_share: "required",
-    seasonal_price: "required",
-    seasonal_quantity: "required",
-    pickup_location: "required",
-    zip: {
-      digits: true,
-      minlength: 5,
-      maxlength: 5
+  form.validate({
+    rules: {
+      seasonal_share: "required",
+      seasonal_price: "required",
+      seasonal_quantity: "required",
+      pickup_location: "required",
+      zip: {
+        digits: true,
+        minlength: 5,
+        maxlength: 5
+      }
+    },
+    messages: {
+      pickup_location: "This section is required",
+      zip: "Please enter a 5 digit zip code"
     }
-  },
-  messages: {
-    pickup_location: "This section is required",
-    zip: "Please enter a 5 digit zip code"
-  }
-});
-$('#submit-button').click(CSASignup.saveOrder);
+  });
+  $('#submit-button').click(CSASignup.saveOrder);
 </script>
-
