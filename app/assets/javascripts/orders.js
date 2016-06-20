@@ -8,7 +8,6 @@ CSASignup.getShareOptions = function() {
     url:'/share_options.json',
     type: 'GET'
   }).done(CSASignup.displayShareOptions);
-
 };
 
 CSASignup.displayShareOptions = function(options) {
@@ -16,15 +15,42 @@ CSASignup.displayShareOptions = function(options) {
   for (var i = 0; i < arrayLength; i = i + 1) {
     var option = options[i];
     if (option.is_season === true) {
-  // Handlebars
-        var source = $('#seasonal_options_template').html();
-        var template = Handlebars.compile(source);
-        var seasonal_options_html = template(option);
-        $('#seasonal-options').append(seasonal_options_html);
+      // Handlebars template in edit.html.erb
+      var source = $('#seasonal_options_template').html();
+      var template = Handlebars.compile(source);
+      var seasonal_options_html = template(option);
+      $('#seasonal-options').append(seasonal_options_html);
+
+      if (option.line_checked === "checked") {
+        CSASignup.displaySharePriceQty(option);
+      }
     }
   }
+  $('input[name=seasonal_share]').change(CSASignup.getSharePriceQty);
+};
 
+CSASignup.getSharePriceQty = function() {
+  var shareId = $('input[name=seasonal_share]:checked').val();
+  $.ajax({
+    url: '/share_options/' + shareId + '.json',
+    type: 'GET'
+  }).success(CSASignup.displaySharePriceQty);
+};
+
+CSASignup.displaySharePriceQty = function(option) {
+  //Clears DOM element
+  $('#seasonal-price-qty').empty();
+  if (option.line_checked !== null) {
+    option.price = option.line_amount
   };
+
+  // Handlebars template in edit.html.erb
+  // Adds selected price & quantity inputs to DOM
+  var source = $('#seasonal_price_qty').html();
+  var template = Handlebars.compile(source);
+  var seasonal_price_qty = template(option);
+  $('#seasonal-price-qty').append(seasonal_price_qty);
+};
 
 CSASignup.saveOrder = function() {
   if (form.valid()=== true) {
@@ -32,8 +58,8 @@ CSASignup.saveOrder = function() {
     var extraOptionsCollection = $('input:checked[name=extra_share]');
     var extraOptionsArray = [];
     var orderId = $('input[name=order_id]').val();
-    var seasonalPrice = $('input[name=seasonal_price_' +seasonalOptionId +']').val();
-    var seasonalQuantity = $('input[name=seasonal_quantity_' +seasonalOptionId +']').val();
+    var seasonalPrice = $('input[name=seasonal_price]').val();
+    var seasonalQuantity = $('input[name=seasonal_quantity]').val();
     var pickupId = $('input:checked[name=pickup_location]').val();
     var paymentPlan = $('#payment_plan option:selected').val();
     var firstName = $('input[name=firstname]').val();

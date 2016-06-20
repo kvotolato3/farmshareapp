@@ -1,12 +1,24 @@
 
   <script id="seasonal_options_template" type="text/x-handlebars-template">
     <ul id={{id}}>
-      <li><input type=radio name="seasonal_share" value={{id}} {{line_checked}}><label for={{id}}>{{name}}</label>
-      ({{num_of_distributions}} weeks {{start_date}} through {{end_date}})</li>
-      <li>Sliding scale: {{min_price}} to {{max_price}} Please pay at least {{price}} unless you are low income. Payments over {{price}} subsidizes shares for low income members and help the farm.</li>
-      <li>What amount will you pay? <input type="number" min={{min_price}} max={{max_price}} id="seasonal_price_{{id}}" name="seasonal_price_{{id}}" step="1.0" value={{line_amount}}></li>
-      <li>How many shares would you like? <input type="number" min=0 max=10 id="seasonal_quantity_{{id}}" name="seasonal_quantity_{{id}}" step="1.0" value={{line_quantity}}></li>
+      <li>
+        <input type=radio name="seasonal_share" value={{id}} {{line_checked}}><label for={{id}}>{{name}}</label>
+      ({{num_of_distributions}} weeks {{start_date}} through {{end_date}})
+      </li>
     </ul>
+  </script>
+
+  <script id="seasonal_price_qty" type="text/x-handlebars-template">
+  <p>
+  Sliding scale: {{min_price}} to {{max_price}} Please pay at least {{price}} unless you are low income. Payments over {{price}} subsidizes shares for low income members and help the farm.
+  </p>
+  <p>
+    Amount
+    <input type="number" min={{min_price}} max={{max_price}} id="seasonal_price" name="seasonal_price" step="1.0" value={{price}}>
+  </p>
+  <p>Quantity
+    <input type="number" min=0 max=10 id="seasonal_quantity" name="seasonal_quantity" step="1.0" value=1>
+  </p>
   </script>
 
 
@@ -23,6 +35,10 @@
 
   <div id="seasonal-options">
   </div>
+
+  <div id="seasonal-price-qty">
+  </div>
+
     <div class="well">
     <h3>Select Additional Share Options you would like for the Season</h3>
     </div>
@@ -145,9 +161,14 @@
 
 <script>
 CSASignup.getShareOptions();
+
 var form = $('#options-form');
+
 form.validate({
   rules: {
+    seasonal_share: "required",
+    seasonal_price: "required",
+    seasonal_quantity: "required",
     pickup_location: "required",
     zip: {
       digits: true,
