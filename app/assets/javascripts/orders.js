@@ -1,3 +1,6 @@
+$(document).ready(function(){
+  $('.navbar-nav li').click(CSASignup.highlightActive);
+});
 var CSASignup = CSASignup || {};
 
 CSASignup.getShareOptions = function() {
@@ -106,6 +109,18 @@ CSASignup.saveOrder = function() {
 
 CSASignup.reviewOrder = function(result) {
   window.location.replace("/orders/" + result.id);
+};
+
+CSASignup.highlightActive = function(event) {
+  var $target = $( event.target );
+
+  //Find the active list item and remove active class
+  $('li.active').removeClass('active');
+
+  //Add active class to the target list item
+  $target.parent().addClass('active');
+
+  //Why is this going back to its original state after executing this code?
 };
 
 

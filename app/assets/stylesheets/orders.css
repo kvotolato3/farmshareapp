@@ -33,8 +33,13 @@ td img {
   background-size: cover;
   width: 100%;
   height: 350px;
+}
+
+.header_background_layer {
+  width: 100%;
+  height: 100%;
   display: table;
-  margin-bottom: 2em;
+  background-color: rgba(0,0,0,.5);
 }
 
 .header-text {
@@ -44,6 +49,19 @@ td img {
   font-size: 8em;
   font-family: 'Oswald', sans-serif;
   color: #FFFFFF;
+}
+
+#header-subtext {
+  font-size: 2rem;
+}
+
+#header-subtext a {
+  text-decoration: none;
+  color: #4373A3;
+}
+
+#header-subtext a:hover {
+  color: #365F87;
 }
 
 .payment_plan {
