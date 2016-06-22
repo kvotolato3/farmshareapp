@@ -45,6 +45,9 @@ end
 def create
 end
 
+def about
+end
+
 private
   def set_order
     @order = Order.find(params[:id])
