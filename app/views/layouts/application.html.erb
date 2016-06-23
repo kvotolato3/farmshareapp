@@ -23,8 +23,8 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <ul class="nav navbar-nav">
-        <li id="nav-home" class="active"><a href="/">Home</a></li>
-        <li id="nav-about"><%= link_to 'About', about_path %></li>
+        <li id="nav-home" <% if controller_name == 'orders' && action_name == 'edit' %>class="active" <% end %>><a href="/">Home</a></li>
+        <li id="nav-about" <% if controller_name == 'orders' && action_name == 'about' %>class="active" <% end %>><%= link_to 'About', about_path %></li>
       </ul>
     </div>
   </nav>
