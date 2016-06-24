@@ -26,6 +26,9 @@
             <ul class="nav navbar-nav">
               <li id="nav-home" <% if controller_name == 'orders' && action_name == 'edit' %>class="active" <% end %>><a href="/">Home</a></li>
               <li id="nav-about" <% if controller_name == 'orders' && action_name == 'about' %>class="active" <% end %>><%= link_to 'About', about_path %></li>
+              <li id='octocat'>
+                <a href='https://github.com/kvotolato3/farmshareapp'><img src='https://s3.amazonaws.com/kathleen-farmshareapp/img/GitHub-Mark-32px.png'></a>
+              </li>
             </ul>
           </div>
         </nav>
@@ -38,6 +41,11 @@
         <%= yield %>
       </div>
       <footer class="footer">
+        <div class='footer-container'>
+          <div class='center'>
+            <p>&copy; 2016 Kathleen Csizmadia</p>
+          </div>
+        </div>
       </footer>
     </div>
   </body>
