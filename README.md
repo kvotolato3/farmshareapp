@@ -1,4 +1,6 @@
-Redfire Farm - CSA Signup Form
+Farm Share Signup
+
+Sign up to receive weekly produce fresh from the farm! Online ordering and payment system for CSA (Community Supported Agriculture) farms.
 
 Project 3 for General Assembly Web Development Immersive Program
 
@@ -10,10 +12,11 @@ Demo: [http://redfirefarmapp.herokuapp.com/](http://redfirefarmapp.herokuapp.com
 
 Description: For my final project at General Assembly, I experimented with html forms using Rails and Handlebars.js.
 
-Technologies:
 - [Stripe](https://github.com/stripe/stripe-ruby)
 - [Handlebars.js](http://handlebarsjs.com/)
 - [Twitter Bootstrap](http://getbootstrap.com/)
+- [Rspec](https://github.com/rspec/rspec-rails)
+- [JQuery Validation](https://jqueryvalidation.org/)
 
 
 Features:
