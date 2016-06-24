@@ -39,7 +39,7 @@ For my final project at General Assembly, I experimented with html forms using R
 2. Go into your account settings (under Your Account) and click on API Keys.
 3. In the project root directory, create a new file named .env and add the following lines to it:
 
-```
+  ```
 PUBLISHABLE_KEY=[paste your Test Publishable Key here]
 SECRET_KEY=[paste your Test Secret Key here]
 ```
@@ -48,7 +48,7 @@ SECRET_KEY=[paste your Test Secret Key here]
 
 5. In the config/initializers directory, add a file named "stripe.rb" and add this code:
 
-```
+  ```
   Rails.configuration.stripe = {
     :publishable_key => ENV['PUBLISHABLE_KEY'],
     :secret_key      => ENV['SECRET_KEY']
