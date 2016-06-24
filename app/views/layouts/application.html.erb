@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Farm Share Sign up</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
-</head>
-<body>
-
-  <div class="header_background">
-    <div class="header_background_layer">
-      <div class="header-text">
-        Farm Share Signup
+  <head>
+    <title>Farm Share Sign up</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+  </head>
+  <body class='body'>
+    <div class='wrapper'>
+      <div class='header'>
+        <div class="header_background">
+          <div class="header_background_layer">
+            <div class="header-text">
+              Farm Share Signup
+            </div>
+          </div>
+        </div>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <ul class="nav navbar-nav">
+              <li id="nav-home" <% if controller_name == 'orders' && action_name == 'edit' %>class="active" <% end %>><a href="/">Home</a></li>
+              <li id="nav-about" <% if controller_name == 'orders' && action_name == 'about' %>class="active" <% end %>><%= link_to 'About', about_path %></li>
+            </ul>
+          </div>
+        </nav>
       </div>
+      <div class='content'>
+        <% flash.each do |key, message| %>
+        <%= content_tag :div, message, class: key %>
+        <% end %>
+
+        <%= yield %>
+      </div>
+      <footer class="footer">
+      </footer>
     </div>
-  </div>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav">
-        <li id="nav-home" <% if controller_name == 'orders' && action_name == 'edit' %>class="active" <% end %>><a href="/">Home</a></li>
-        <li id="nav-about" <% if controller_name == 'orders' && action_name == 'about' %>class="active" <% end %>><%= link_to 'About', about_path %></li>
-      </ul>
-    </div>
-  </nav>
-
-
-<% flash.each do |key, message| %>
-<%= content_tag :div, message, class: key %>
-<% end %>
-
-<%= yield %>
-
-</body>
+  </body>
 </html>

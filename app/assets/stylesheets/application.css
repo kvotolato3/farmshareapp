@@ -14,12 +14,16 @@
  *= require_self
  */
 
-body {
-  height: 100%;
-  margin-bottom: 60px;
+.wrapper {
+  min-height: 100%;
+  position: relative;
 }
 
-.footer {
+.content {
+  padding-bottom: 6em;
+}
+
+footer.footer {
   position: absolute;
   bottom: 0;
   width: 100%;
